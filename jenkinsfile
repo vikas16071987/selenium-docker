@@ -1,0 +1,36 @@
+pipeline{
+
+	agent any
+
+    
+
+	stages{
+
+		stage('Build Jar'){
+			
+			steps{
+				sh " mvn clean package -DskipTests"
+				echo "NUMBER =${NUMBER}"
+
+		    }
+    
+         }
+
+    
+    
+        stage('Build Image'){
+            steps{
+                sh "docker build -t=vikas1607/selenium1234 ."
+         }    
+            
+           
+        } 
+        
+        stage('Build Image'){
+            steps ('Push Image'){
+               sh "docker push vikas1607/selenium ."
+            }
+        }
+	}   
+ 		
+}	
