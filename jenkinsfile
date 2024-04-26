@@ -26,7 +26,7 @@ pipeline{
            
         } 
         
-        stage('Build Image'){
+        stage('push Image'){
             steps ('Push Image'){
                sh "docker push vikas1607/selenium ."
             }
