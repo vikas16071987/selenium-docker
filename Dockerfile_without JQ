@@ -1,0 +1,18 @@
+FROM bellsoft/liberica-openjdk-alpine:22.0.1-cds 
+
+# Creating a workspace
+WORKDIR /home/selenium-docker
+
+
+#Add required files for our project
+ADD target/docker-resources ./
+
+#Add the utilities
+
+ENTRYPOINT  java -cp 'libs/*' \
+            -Dselenium.grid.enabled=true \
+            -Dselenium.grid.hubHost="${HUB_HOST:-hub}" \
+            -Dbrowser="${BROWSER:-chrome}" \
+            org.testng.TestNG \
+            -threadcount "${THREAD_COUNT:-1}" \
+            test-suites/"${TEST_SUITE}"
