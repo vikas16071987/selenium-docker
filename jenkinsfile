@@ -20,7 +20,7 @@ pipeline{
 
         stage('Build Image'){
             steps{
-                sh 'docker build -t=vikas1607/selenium1234: .'
+                sh 'docker build -t=vikas1607/selenium1234 .'
             }
         }
 
